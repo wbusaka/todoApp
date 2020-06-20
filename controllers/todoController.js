@@ -40,7 +40,7 @@ module.exports = (app)=> {
 
     app.delete('/todo/:item', (req, res)=> {
         //delete 
-        Todo.find({item: req.params.item.replace(/\-/g, " ")}).remove((err, data)=> {
+        Todo.find({item: req.params.item.replace(/\-/g, " ")}).deleteOne((err, data)=> {
             if(err) throw err
             res.json({todos: data})
         })
