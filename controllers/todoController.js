@@ -22,14 +22,17 @@ let Todo = mongoose.model('Todo', todoSchema)
 
 module.exports = (app)=> {
 
-    app.get('/todo', (req, res)=> {
-        //get data from mongodb and pass it to view
-        Todo.find({}, (err, data)=> {
-            if(err) throw err
-            res.render('todo', {todos: data})
+    if(process.env.NODE_ENV === 'production') {
+  
+        app.get('/todo', (req, res)=> {
+            //get data from mongodb and pass it to view
+            Todo.find({}, (err, data)=> {
+                if(err) throw err
+                res.render('todo', {todos: data})
+            })
         })
-    })
-
+        
+      }
     app.post('/todo', urlencodedParser, (req, res)=> {
         //get data from view and pass it mongodb
         let newTodo = Todo(req.body).save( (err, data)=>{
