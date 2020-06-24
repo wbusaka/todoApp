@@ -11,7 +11,7 @@ let todoSchema = new mongoose.Schema({
 })
 
 //create a model
-let Todo = mongoose.model('Todo', todoSchema)
+let Todo = mongoose.model('todo', todoSchema)
 
 /*let itemOne = Todo({item: 'Buy books'}).save((err)=> {
     if(err){
